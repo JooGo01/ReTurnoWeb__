@@ -20,4 +20,15 @@ public partial class SucursalServicio
     public virtual Subservicio? Subservicio { get; set; }
 
     public virtual Sucursal? Sucursal { get; set; }
+
+    public SucursalServicio(int p_id, Sucursal p_id_sucursal, Subservicio p_id_subservicio, int p_tiempo_servicio, int p_estado_baja)
+    {
+        this.Id = p_id;
+        this.Sucursal = p_id_sucursal;
+        this.Subservicio = p_id_subservicio;
+        this.TiempoServicio = p_tiempo_servicio;
+        this.EstadoBaja = p_estado_baja;
+    }
+
+    public SucursalServicio() { }
 }

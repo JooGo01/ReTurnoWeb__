@@ -20,4 +20,15 @@ public partial class Cliente
     public virtual ICollection<Sucursal> Sucursals { get; set; } = new List<Sucursal>();
 
     public virtual Usuario? Usuario { get; set; }
+
+    public Cliente(int p_id, string p_razon_social, Rubro p_rubro, Usuario p_usr, int p_estado_baja)
+    {
+        Id = p_id;
+        RazonSocial = p_razon_social;
+        Rubro = p_rubro;
+        Usuario = p_usr;
+        EstadoBaja = p_estado_baja;
+    }
+
+    public Cliente() { }
 }

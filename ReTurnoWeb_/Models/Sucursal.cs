@@ -24,4 +24,17 @@ public partial class Sucursal
     public virtual ICollection<SucursalServicio> SucursalServicios { get; set; } = new List<SucursalServicio>();
 
     public virtual ICollection<Turno> Turnos { get; set; } = new List<Turno>();
+
+    public Sucursal(int p_id, Cliente p_cliente, Direccion p_direccion, string p_telefono, int p_estado_baja)
+    {
+        this.Id = p_id;
+        this.Cliente = p_cliente;
+        this.Direccion = p_direccion;
+        this.Telefono = p_telefono;
+        this.EstadoBaja = p_estado_baja;
+    }
+
+    public Sucursal() { }
+
+    public Sucursal(int p_id) { Id = p_id; }
 }

@@ -24,4 +24,18 @@ public partial class Direccion
     public virtual ICollection<Sucursal> Sucursals { get; set; } = new List<Sucursal>();
 
     public virtual ICollection<Usuario> Usuarios { get; set; } = new List<Usuario>();
+
+    public Direccion(int p_id, string p_calle, int p_altura, string p_codigo_postal, int p_piso, string p_provincia, string p_ciudad, string p_departamento)
+    {
+        Id = p_id;
+        Calle = p_calle;
+        Altura = p_altura;
+        CodigoPostal = p_codigo_postal;
+        Piso = p_piso;
+        Provincia = p_provincia;
+        Ciudad = p_ciudad;
+        Departamento = p_departamento;
+    }
+
+    public Direccion() { }
 }

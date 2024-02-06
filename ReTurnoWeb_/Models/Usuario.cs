@@ -37,16 +37,16 @@ public partial class Usuario
 
     public Usuario(int p_id, string p_nombre, string p_apellido, string p_dni, string p_telefono, string p_email, string p_contrasenia, string p_tipo_usuario, Direccion p_direccion, int p_estado_baja)
     {
-        Id = p_id;
-        Nombre = p_nombre;
-        Apellido = p_apellido;
-        Dni = p_dni;
-        Telefono = p_telefono;
-        Email = p_email;
-        Contrasenia = p_contrasenia;
-        TipoUsuario = p_tipo_usuario;
-        Direccion = p_direccion;
-        EstadoBaja = p_estado_baja;
+        this.Id = p_id;
+        this.Nombre = p_nombre;
+        this.Apellido = p_apellido;
+        this.Dni = p_dni;
+        this.Telefono = p_telefono;
+        this.Email = p_email;
+        this.Contrasenia = p_contrasenia;
+        this.TipoUsuario = p_tipo_usuario;
+        this.Direccion = p_direccion;
+        this.EstadoBaja = p_estado_baja;
     }
 
     public Usuario()
