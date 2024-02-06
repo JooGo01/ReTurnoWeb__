@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReTurnoWeb_", "ReTurnoWeb_\ReTurnoWeb_.csproj", "{FC040666-3C39-4D12-A160-45F8AB422E11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC040666-3C39-4D12-A160-45F8AB422E11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC040666-3C39-4D12-A160-45F8AB422E11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC040666-3C39-4D12-A160-45F8AB422E11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC040666-3C39-4D12-A160-45F8AB422E11}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2D08AAE4-941C-4926-A451-CBC611AD1418}
+	EndGlobalSection
+EndGlobal

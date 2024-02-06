@@ -1,0 +1,175 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Turnos</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Reserva de Servicios</h2>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="cliente">Cliente</label>
+                <select class="form-control" id="cliente">
+                    <!-- Aquí debes cargar dinámicamente los clientes desde el servidor -->
+                    <option>Cliente 1</option>
+                    <option>Cliente 2</option>
+                    <!-- Agrega más opciones según sea necesario -->
+                </select>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="sucursal">Sucursal</label>
+                <select class="form-control" id="sucursal">
+                    <!-- Aquí debes cargar dinámicamente las sucursales del cliente seleccionado -->
+                    <option>Sucursal 1</option>
+                    <option>Sucursal 2</option>
+                    <!-- Agrega más opciones según sea necesario -->
+                </select>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="servicio">Servicio</label>
+                <select class="form-control" id="servicio">
+                    <!-- Aquí debes cargar dinámicamente los servicios de la sucursal seleccionada -->
+                    <option>Servicio 1</option>
+                    <option>Servicio 2</option>
+                    <!-- Agrega más opciones según sea necesario -->
+                </select>
+            </div>
+        </div>
+
+        <h4 class="mt-4">Grilla de Días</h4>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Domingo</th>
+                        <th>Lunes</th>
+                        <th>Martes</th>
+                        <th>Miércoles</th>
+                        <th>Jueves</th>
+                        <th>Viernes</th>
+                        <th>Sábado</th>
+                    </tr>
+                </thead>
+                <tbody id="days-grid-body">
+                    <!-- Aquí se llenarán dinámicamente los días del mes -->
+                </tbody>
+            </table>
+        </div>
+        <!-- Aquí debes construir tu grilla de días, puedes usar Bootstrap o cualquier otra librería o enfoque que prefieras -->
+
+        <h4 class="mt-4">Grilla de Horarios</h4>
+        <div class="table-responsive" id="schedule-container" style="display: none;">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Hora</th>
+                        <th>Disponibilidad</th>
+                        <!-- Agrega más columnas según sea necesario -->
+                    </tr>
+                </thead>
+                <tbody id="schedule-body">
+                    <!-- Aquí se llenarán dinámicamente los horarios según el día seleccionado -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Función para mostrar la grilla de días para un mes específico
+            function showDaysGrid(year, month) {
+                // Limpiamos la grilla de días
+                $("#days-grid-body").empty();
+
+                // Obtenemos la fecha del primer día del mes
+                var firstDay = new Date(year, month - 1, 1);
+
+                // Calculamos el día de la semana del primer día del mes (0: domingo, 1: lunes, ..., 6: sábado)
+                var startingDay = firstDay.getDay();
+
+                // Obtenemos el último día del mes actual
+                var lastDay = new Date(year, month, 0).getDate();
+
+                // Obtenemos el último día del mes anterior para completar la primera fila
+                var lastDayOfPreviousMonth = new Date(year, month - 1, 0).getDate();
+
+                // Calculamos cuántos días del mes anterior deben incluirse en la primera fila
+                var daysFromPreviousMonth = startingDay;
+
+                // Creamos una fila para los días
+                var row = $("<tr>");
+
+                // Rellenamos los días del mes anterior
+                for (var i = lastDayOfPreviousMonth - daysFromPreviousMonth + 1; i <= lastDayOfPreviousMonth; i++) {
+                    row.append("<td></td>");
+                }
+
+                // Rellenamos los días del mes actual
+                for (var day = 1; day <= lastDay; day++) {
+                    row.append("<td><button class='btn btn-primary btn-show-schedule' data-day='" + day + "'>" + day + "</button></td>");
+
+                    // Si llegamos al final de la semana, cerramos la fila y comenzamos una nueva
+                    if ((startingDay + day) % 7 === 0) {
+                        $("#days-grid-body").append(row);
+                        row = $("<tr>");
+                    }
+                }
+
+                // Si hay celdas vacías al final de la última semana, las llenamos
+                for (var i = 1; i <= 7 - ((startingDay + lastDay) % 7); i++) {
+                    row.append("<td></td>");
+                }
+
+                // Agregamos la última fila al cuerpo de la tabla
+                $("#days-grid-body").append(row);
+            }
+
+            // Función para mostrar la grilla de horarios para un día específico
+            function showSchedule(day) {
+                var scheduleData = [
+                    { hora: "09:00 AM", disponibilidad: "Disponible" },
+                    { hora: "10:00 AM", disponibilidad: "No Disponible" },
+                    // Agrega más datos según sea necesario
+                ];
+
+                // Limpiamos la grilla de horarios
+                $("#schedule-body").empty();
+
+                // Llenamos la grilla con los horarios obtenidos
+                for (var i = 0; i < scheduleData.length; i++) {
+                    var row = $("<tr>");
+                    row.append("<td>" + scheduleData[i].hora + "</td>");
+                    row.append("<td>" + scheduleData[i].disponibilidad + "</td>");
+                    // Agrega más columnas según sea necesario
+                    $("#schedule-body").append(row);
+                }
+
+                // Mostramos la grilla de horarios
+                $("#schedule-container").show();
+            }
+
+            // Evento de clic en el botón para mostrar la grilla de horarios
+            $(document).on("click", ".btn-show-schedule", function () {
+                var day = $(this).data("day");
+                // Llama a la función para mostrar la grilla de horarios para el día seleccionado
+                showSchedule(day);
+            });
+
+            // Llamada inicial para mostrar la grilla de días para el mes actual
+            var currentDate = new Date();
+            showDaysGrid(currentDate.getFullYear(), currentDate.getMonth() + 1);
+        });
+    </script>
+</body>
+</html>

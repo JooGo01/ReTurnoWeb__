@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace ReTurnoWeb_.Models;
+
+public partial class Subservicio
+{
+    public int Id { get; set; }
+
+    public string? NombreServicio { get; set; }
+
+    public int? ServicioId { get; set; }
+
+    public virtual Servicio? Servicio { get; set; }
+
+    public virtual ICollection<SucursalServicio> SucursalServicios { get; set; } = new List<SucursalServicio>();
+
+    public virtual ICollection<Turno> Turnos { get; set; } = new List<Turno>();
+}
