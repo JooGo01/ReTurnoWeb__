@@ -26,7 +26,7 @@ public partial class Turno
 
     public virtual Usuario? Usuario { get; set; }
 
-    public Turno(int p_id, Sucursal p_sucursal, Usuario p_usuario, DateTime p_fecha_ini, DateTime p_fecha_fin, int p_estado_baja, SubServicio p_subservicio)
+    public Turno(int p_id, Sucursal p_sucursal, Usuario p_usuario, DateTime p_fecha_ini, DateTime p_fecha_fin, int p_estado_baja, Subservicio p_subservicio)
     {
         this.Id = p_id;
         this.Sucursal = p_sucursal;

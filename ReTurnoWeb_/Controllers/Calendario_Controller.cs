@@ -422,7 +422,7 @@ namespace ReTurnoWeb_.Controllers
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
             cmd.Parameters.AddWithValue("@fecha", dt_ini.ToString("yyyyMMdd HH:mm:ss"));
             cmd.Parameters.AddWithValue("@fecha_fin", dt_fin.ToString("yyyyMMdd HH:mm:ss"));
-            cmd.Parameters.AddWithValue("@suc", suc.id);
+            cmd.Parameters.AddWithValue("@suc", suc.Id);
 
             try
             {

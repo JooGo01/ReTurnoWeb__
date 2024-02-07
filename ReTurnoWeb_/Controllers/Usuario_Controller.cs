@@ -86,7 +86,7 @@ namespace ReTurnoWeb_.Controllers
                 Cliente cliente = new Cliente();
                 if (user.TipoUsuario == "A")
                 {
-                    ProgramSession.cli = Cliente_Controller.obtenerPorIdUsuario(user.id);
+                    ProgramSession.cli = Cliente_Controller.obtenerPorIdUsuario(user.Id);
                 }
                 else
                 {

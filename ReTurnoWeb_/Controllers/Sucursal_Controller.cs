@@ -146,7 +146,7 @@ namespace ReTurnoWeb_.Controllers
             string query = "select * from dbo.sucursal where cliente_id=@id_cliente and estado_baja=0;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
-            cmd.Parameters.AddWithValue("@id_cliente", cli.id);
+            cmd.Parameters.AddWithValue("@id_cliente", cli.Id);
             // id, cliente_id, direccion_id, telefono, estado_baja
             try
             {
@@ -329,7 +329,7 @@ namespace ReTurnoWeb_.Controllers
             string query = "select s.* from administracion a join sucursal s on a.sucursal_id=s.id join usuario u on u.id=a.usuario_id where s.estado_baja=0 and u.id=@id_usuario;";
 
             SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
-            cmd.Parameters.AddWithValue("@id_usuario", usr.id);
+            cmd.Parameters.AddWithValue("@id_usuario", usr.Id);
             // id, cliente_id, direccion_id, telefono, estado_baja
             try
             {

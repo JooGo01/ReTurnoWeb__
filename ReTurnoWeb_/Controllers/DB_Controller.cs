@@ -24,6 +24,7 @@ namespace ReTurnoWeb_.Controllers
             builder.InitialCatalog = "reTurno"; //NOMBRE DE LA BASE DE DATOS
             builder.IntegratedSecurity = true; //TIENE O NO SEGURIDAD INTEGRADA CON WINDOWS
             builder.MultipleActiveResultSets = true;
+            builder.TrustServerCertificate = true;
 
             connectionString = builder.ToString();
             connection = new SqlConnection(connectionString);

@@ -1,0 +1,31 @@
+﻿@model List<ReTurnoWeb_.Models.Turno>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Object</title>
+</head>
+<body>
+    <h1>Objeto</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Servicio</th>
+                <th>Subservicio</th>
+                <th>Usuario</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(Turno turnos in Model)
+            {
+                <tr>
+                    <td>@turnos.Id</td>
+                    <td>@turnos.Subservicio.Servicio.NombreServicio</td>
+                    <td>@turnos.Subservicio.NombreServicio</td>
+                    <td>@turnos.Usuario.Nombre</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
