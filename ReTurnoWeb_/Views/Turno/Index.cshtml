@@ -2,30 +2,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Object</title>
+    <title>ReTurno - Turnos</title>
 </head>
 <body>
-    <h1>Objeto</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Servicio</th>
-                <th>Subservicio</th>
-                <th>Usuario</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach(Turno turnos in Model)
-            {
-                <tr>
-                    <td>@turnos.Id</td>
-                    <td>@turnos.Subservicio.Servicio.NombreServicio</td>
-                    <td>@turnos.Subservicio.NombreServicio</td>
-                    <td>@turnos.Usuario.Nombre</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <h1>Turnos Usuario</h1>
+    @foreach (Turno turnos in Model)
+    {
+        <div class="card" style="width: 18rem;margin: 20px 10px;">
+            <div class="card-header">
+                <strong>@turnos.Sucursal.Cliente.RazonSocial</strong>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong><u>Servicio</u>: </strong>@turnos.Subservicio.Servicio.NombreServicio</li>
+                <li class="list-group-item"><strong><u>Sub-Servicio</u>: </strong>@turnos.Subservicio.NombreServicio</li>
+                <li class="list-group-item"><strong><u>Fecha-Hora Inicio</u>: </strong>@turnos.FechaIni</li>
+                <li class="list-group-item"><strong><u>Fecha-Hora Fin</u>: </strong>@turnos.FechaFin</li>
+            </ul>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ejemplo_@turnos.Id">
+                Dar de Baja
+            </button>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="ejemplo_@turnos.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">@turnos.Subservicio.Servicio.NombreServicio - @turnos.Subservicio.NombreServicio</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Está seguro que desea dar de baja el turno?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <a asp-action="Edit" class="btn btn-primary" asp-controller="Turno" asp-route-id="@turnos.Id">Confirmar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </body>
 </html>

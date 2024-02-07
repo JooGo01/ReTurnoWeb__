@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace ReTurnoWeb_.Controllers
 {
@@ -53,10 +54,19 @@ namespace ReTurnoWeb_.Controllers
         // GET: Turno_Controller/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            DB_Controller.initialize();
+            Calendario_Controller.bajarTurno(id);
+            List<Turno> listaTurno = new List<Turno>();
+            listaTurno = Calendario_Controller.obtenerTodos();
+            return View("~/Views/Turno/Index.cshtml", listaTurno);
         }
 
         // POST: Turno_Controller/Edit/5
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -70,6 +80,7 @@ namespace ReTurnoWeb_.Controllers
                 return View();
             }
         }
+        */
 
         // GET: Turno_Controller/Delete/5
         public ActionResult Delete(int id)
