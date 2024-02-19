@@ -61,6 +61,9 @@ namespace ReTurnoWeb_.Controllers
                 new Claim(ClaimTypes.Name, usuario_login.Nombre)
             };
 
+            DB_Controller.initialize();
+            Usuario_Controller.autenticar(mail, pwd, true);
+
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(listClaims, CookieAuthenticationDefaults.AuthenticationScheme);
             AuthenticationProperties propiedades = new AuthenticationProperties() {
                 AllowRefresh = true

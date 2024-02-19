@@ -495,6 +495,78 @@ namespace ReTurnoWeb_.Controllers
             return boolTurno;
         }
 
+        public static List<Turno> obtenerPorUsuarioTurnoActivo(DateTime dt, Usuario usr)
+        {
+            int cantidadTurnos = 0;
+            List<Turno> list = new List<Turno>();
+            List<int> listId = new List<int>();
+            List<int> listIdSuc = new List<int>();
+            List<int> listIdUsr = new List<int>();
+            List<DateTime> listDtIni = new List<DateTime>();
+            List<DateTime> listDtFin = new List<DateTime>();
+            List<int> listEstado = new List<int>();
+            List<int> listEstadoBaja = new List<int>();
+            List<int> listIdServ = new List<int>();
+            List<Sucursal> listSuc = new List<Sucursal>();
+            List<Usuario> listUsr = new List<Usuario>();
+            List<Subservicio> listServ = new List<Subservicio>();
+            Boolean boolTurno = false;
+            string query = "select * from dbo.turno where estado_baja=0 and usuario_id=@usuario and fecha_ini > @fecha;";
+
+            SqlCommand cmd = new SqlCommand(query, DB_Controller.connection);
+            cmd.Parameters.AddWithValue("@fecha", dt.ToString("yyyyMMdd HH:mm:ss"));
+            cmd.Parameters.AddWithValue("@usuario", usr.Id);
+
+            try
+            {
+                DB_Controller.open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    listId.Add(reader.GetInt32(0));
+                    listIdSuc.Add(reader.GetInt32(1));
+                    listIdUsr.Add(reader.GetInt32(2));
+                    listDtIni.Add(reader.GetDateTime(3));
+                    listDtFin.Add(reader.GetDateTime(4));
+                    listEstadoBaja.Add(reader.GetInt32(5));
+                    listIdServ.Add(reader.GetInt32(6));
+                    Trace.WriteLine("Turno encontrado, id: " + reader.GetInt32(0));
+                }
+
+                reader.Close();
+
+                for (int i = 0; i < listIdSuc.Count; i++)
+                {
+                    listSuc.Add(Sucursal_Controller.obtenerPorId(listIdSuc[i]));
+                }
+
+                for (int i = 0; i < listIdUsr.Count; i++)
+                {
+                    listUsr.Add(Usuario_Controller.obtenerPorId(listIdUsr[i]));
+                }
+
+                for (int i = 0; i < listIdServ.Count; i++)
+                {
+                    listServ.Add(SubServicio_Controller.obtenerPorId(listIdServ[i]));
+                }
+
+                for (int i = 0; i < listId.Count; i++)
+                {
+                    list.Add(new Turno(listId[i], listSuc[i], listUsr[i], listDtIni[i], listDtFin[i], listEstadoBaja[i], listServ[i]));
+                }
+
+                DB_Controller.close();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Hay un error en la query: " + ex.Message);
+            }
+
+            return list;
+        }
+
 
 
         // EDIT / PUT

@@ -1,4 +1,7 @@
 ﻿@model List<ReTurnoWeb_.Models.Turno>
+@{
+    int contador = 0;
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,6 +43,19 @@
                 </div>
             </div>
         </div>
+        contador = contador + 1;
+    }
+
+    @{
+        if (contador == 0)
+        {
+            <div class="alert alert-warning d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill" /></svg>
+                <div>
+                    <strong>No se encontraron turnos activos!</strong>
+                </div>
+            </div>
+        }
     }
 </body>
 </html>

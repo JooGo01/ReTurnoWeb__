@@ -20,7 +20,7 @@ namespace ReTurnoWeb_.Controllers
         {
             List<Turno> listaTurno = new List<Turno>();
             DB_Controller.initialize();
-            listaTurno=Calendario_Controller.obtenerTodos();
+            listaTurno=Calendario_Controller.obtenerPorUsuarioTurnoActivo(DateTime.Now, ProgramSession.logueado);
             return View("~/Views/Turno/Index.cshtml", listaTurno);
         }
 
