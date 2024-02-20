@@ -1,0 +1,71 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model ReTurnoWeb_.Models.Usuario;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ReTurno - Usuario</title>
+</head>
+<body>
+    <h1>Editar datos de la cuenta</h1>
+    @Html.HiddenFor(model => model.Id)
+    @if (Model.Id != 0)
+    {
+        <h2><u>Datos de la Cuenta</u></h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">DNI</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.Nombre</td>
+                    <td>@Model.Apellido</td>
+                    <td>@Model.Email</td>
+                    <td>@Model.Telefono</td>
+                    <td>@Model.Dni</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="card-body">
+            <form asp-controller="Usuario" asp-action="UpdateUser" method="post">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" name="nombre" value="@Model.Nombre" disabled required>
+                </div>
+                <div class="form-group">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" placeholder="Ingrese su apellido" name="apellido" value="@Model.Apellido" disabled required>
+                </div>
+                <div class="form-group">
+                    <label for="dni">DNI</label>
+                    <input type="text" class="form-control" id="dni" placeholder="Ingrese su dni" name="dni" value="@Model.Dni" disabled required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Telefono</label>
+                    <input type="number" class="form-control" id="telefono" placeholder="Ingrese su telefono" name="telefono" value="@Model.Telefono" required>
+                </div>
+                <div class="form-group">
+                    <label for="mail">E-Mail</label>
+                    <input type="email" class="form-control" id="mail" placeholder="Ingrese su correo" name="mail" value="@Model.Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="contrasena">Contraseña</label>
+                    <input type="password" class="form-control" id="contrasena" placeholder="Ingrese su contraseña" name="pwd" value="@Model.Contrasenia" required>
+                </div>
+                
+                <div class="d-grid gap-2 mb-3 pt-3">
+                    <button type="submit" class="btn btn-primary">Editar</button>
+                </div>
+            </form>
+        </div>
+    }
+</body>
+</html>

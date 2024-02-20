@@ -1,0 +1,79 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model ReTurnoWeb_.Models.Usuario;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ReTurno - Direccion</title>
+</head>
+<body>
+    <h1>Mi Perfil</h1>
+    <h2>Editar Detalles de Dirección</h2>
+    @Html.HiddenFor(model => model.Id)
+    @if (Model.Id != 0)
+    {
+        <h2><u>Datos de la Direccion</u></h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Provincia</th>
+                    <th scope="col">Ciudad</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Altura </th>
+                    <th scope="col">Piso</th>
+                    <th scope="col">Departamento</th>
+                    <th scope="col">Codigo Postal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.Direccion.Provincia</td>
+                    <td>@Model.Direccion.Ciudad</td>
+                    <td>@Model.Direccion.Calle</td>
+                    <td>@Model.Direccion.Altura</td>
+                    <td>@Model.Direccion.Piso</td>
+                    <td>@Model.Direccion.Departamento</td>
+                    <td>@Model.Direccion.CodigoPostal</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="card-body">
+            <form asp-controller="Usuario" asp-action="UpdateDireccion" method="post">
+                <div class="form-group">
+                    <label for="provincia">Provincia</label>
+                    <input type="text" class="form-control" id="provincia" placeholder="Ingrese su Provincia" name="provincia" value="@Model.Direccion.Provincia" maxlength="35" required>
+                </div>
+                <div class="form-group">
+                    <label for="ciudad">Ciudad</label>
+                    <input type="text" class="form-control" id="ciudad" placeholder="Ingrese su Ciudad" name="ciudad" value="@Model.Direccion.Ciudad" maxlength="35" required>
+                </div>
+                <div class="form-group">
+                    <label for="calle">Calle</label>
+                    <input type="text" class="form-control" id="calle" placeholder="Ingrese su Calle" name="calle" value="@Model.Direccion.Calle" maxlength="30" required>
+                </div>
+                <div class="form-group">
+                    <label for="altura">Altura</label>
+                    <input type="number" class="form-control" id="altura" placeholder="Ingrese su Altura" name="altura" value="@Model.Direccion.Altura" min="1" max="9999" required>
+                </div>
+                <div class="form-group">
+                    <label for="piso">Piso</label>
+                    <input type="number" class="form-control" id="piso" placeholder="Ingrese su Piso" name="piso" value="@Model.Direccion.Piso" min="0" max="99" required>
+                </div>
+                <div class="form-group">
+                    <label for="departamento">Departamento</label>
+                    <input type="text" class="form-control" id="departamento" placeholder="Ingrese su Departamento" name="departamento" value="@Model.Direccion.Departamento" maxlength="2" required>
+                </div>
+                <div class="form-group">
+                    <label for="codpos">Codigo Postal</label>
+                    <input type="text" class="form-control" id="codpos" placeholder="Ingrese su Codigo Postal" name="codpos" value="@Model.Direccion.CodigoPostal" maxlength="5" required>
+                </div>
+                <div class="d-grid gap-2 mb-3 pt-3">
+                    <button type="submit" class="btn btn-primary">Editar</button>
+                </div>
+            </form>
+        </div>
+    }
+</body>
+</html>

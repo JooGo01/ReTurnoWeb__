@@ -1,0 +1,81 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model ReTurnoWeb_.Models.Usuario;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ReTurno - Usuario</title>
+</head>
+<body>
+    <h1>Mi Perfil</h1>
+
+    @Html.HiddenFor(model => model.Id)
+    @if (Model.Id!=0){
+        <h2><u>Datos de la Cuenta</u></h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Email</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.Nombre</td>
+                    <td>@Model.Apellido</td>
+                    <td>@Model.Email</td>
+                    <td>
+                        <a asp-action="Edit" class="btn btn-primary" asp-controller="Usuario" asp-route-id="@Model.Id">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                            </svg>
+                            Editar
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2><u>Datos Personales</u></h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Provincia</th>
+                    <th scope="col">Ciudad</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Altura </th>
+                    <th scope="col">Piso</th>
+                    <th scope="col">Departamento</th>
+                    <th scope="col">Codigo Postal</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.Direccion.Provincia</td>
+                    <td>@Model.Direccion.Ciudad</td>
+                    <td>@Model.Direccion.Calle</td>
+                    <td>@Model.Direccion.Altura</td>
+                    <td>@Model.Direccion.Piso</td>
+                    <td>@Model.Direccion.Departamento</td>
+                    <td>@Model.Direccion.CodigoPostal</td>
+                    <td>
+                        <a asp-action="EditDireccion" class="btn btn-primary" asp-controller="Usuario" asp-route-id="@Model.Id">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                            </svg>
+                            Editar
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    }
+</body>
+</html>
