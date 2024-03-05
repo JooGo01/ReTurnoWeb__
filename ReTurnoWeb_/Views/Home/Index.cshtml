@@ -1,9 +1,76 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<link rel="stylesheet" href="~/css/indexstyle.css" asp-append-version="true" />
 
 <div class="text-center">
-    <h1 class="display-4">Bienvenido!</h1>
-    <h2>@ProgramSession.logueado.Nombre @ProgramSession.logueado.Apellido !</h2>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">ReTurno - Sistema de Turnos Multigestion</h1>
+    <h2>Bienvenido @ProgramSession.logueado.Nombre @ProgramSession.logueado.Apellido !</h2>
+    <div class="container">
+        <h2>¿Que es ReTurno?</h2>
+        <p>
+            Returno es un sistema de gestión de turnos versátil que se adapta a todo
+            tipo de negocios. Simplifica la gestión de citas y horarios, permitiendo
+            una experiencia fluida tanto para los clientes como para el personal.
+        </p>
+
+        <div class="features">
+            <div class="feature">
+                <img src="~/img/man-thinking.png" alt="Adaptable" />
+                <h3>Adaptable</h3>
+                <p>
+                    Personaliza el sistema según las necesidades específicas de tu
+                    negocio.
+                </p>
+            </div>
+            <div class="feature">
+                <img src="~/img/facildeusar.png" alt="Facil de usar" />
+                <h3>Fácil de usar</h3>
+                <p>Interfaz intuitiva que facilita la gestión de turnos y citas.</p>
+            </div>
+            <div class="feature">
+                <img src="~/img/rapido.png" alt="Seguro" />
+                <h3>Veloz</h3>
+                <p>Realiza reservas y citas de forma rápida y eficiente, optimizando el tiempo tanto de clientes como de personal.</p>
+            </div>
+            </p>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <section class="use-cases">
+        <h2>Casos de uso de Returno</h2>
+
+        <div class="use-case">
+            <img src="~/img/peluqueria.png" alt="Peluqueria" />
+            <h3>Peluquería</h3>
+            <p>
+                Optimiza la gestión de citas en tu peluquería. Permite que tus
+                clientes reserven citas de forma rápida y sencilla, evitando esperas
+                innecesarias.
+            </p>
+        </div>
+
+        <div class="use-case">
+            <img src="~/img/psicologo.png" alt="Psicologo" />
+            <h3>Psicólogo</h3>
+            <p>
+                Facilita la coordinación de horarios con tus pacientes. Con Returno,
+                los pacientes pueden reservar consultas de manera online, lo que
+                mejora la eficiencia de tu práctica.
+            </p>
+        </div>
+
+        <div class="use-case">
+            <img src="~/img/medico.png" alt="Medico" />
+            <h3>Médico</h3>
+            <p>
+                Organiza tu consulta médica de manera efectiva. Gestiona fácilmente
+                las citas de tus pacientes y reduce el tiempo de espera en tu
+                consultorio con Returno.
+            </p>
+        </div>
+    </section>
+</div>
 </div>
